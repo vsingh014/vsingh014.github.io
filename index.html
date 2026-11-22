@@ -71,9 +71,14 @@
     }
 
     .masthead {
+      display: flex;
+      align-items: center;
+      gap: 24px;
       padding-bottom: 28px;
       border-bottom: 2px solid var(--ink);
     }
+
+    .masthead h1 { min-width: 0; margin: 0; }
 
     h1 {
       margin: 0 0 18px;
@@ -101,9 +106,11 @@
     .contact-separator { padding: 0 9px; color: var(--coral); }
 
     .photo-space {
-      width: 132px;
-      aspect-ratio: 4 / 5;
+      width: 112px;
+      aspect-ratio: 1;
       overflow: hidden;
+      flex: 0 0 auto;
+      border-radius: 50%;
     }
 
     .photo-space img {
@@ -120,16 +127,11 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .section.summary-section {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 132px;
-      align-items: start;
-      gap: 28px;
-    }
+    .section.summary-section { display: block; }
 
     .section-content > :first-child { margin-top: 0; }
     .section-content > :last-child { margin-bottom: 0; }
-    .summary { max-width: 720px; margin: 0; font-size: 16px; line-height: 1.7; }
+    .summary { margin: 0; font-size: 16px; line-height: 1.7; }
     .skills { margin: 0; color: #33443e; line-height: 1.8; }
 
     .education-entry,
@@ -199,11 +201,11 @@
       .resume { padding: 32px 24px 42px; }
       .tabs { padding: 0 8px; }
       .tab-button { padding-right: 12px; padding-left: 12px; }
+      .masthead { gap: 18px; }
       .masthead { padding-bottom: 22px; }
       h1 { font-size: 32px; }
       .photo-space { width: 88px; }
       .section { padding: 21px 0; }
-      .section.summary-section { grid-template-columns: minmax(0, 1fr) 88px; gap: 18px; }
       .section-label { font-size: 19px; }
       .summary { font-size: 15px; }
       .job-heading { gap: 10px; }
@@ -217,7 +219,7 @@
       .resume { padding-right: 18px; padding-left: 18px; }
       h1 { font-size: 29px; }
       .photo-space { width: 70px; }
-      .section.summary-section { grid-template-columns: minmax(0, 1fr) 70px; gap: 12px; }
+      .masthead { gap: 12px; }
       .contact-separator { padding: 0 4px; }
       .education-entry { display: block; }
       .education-entry .date { margin-top: 2px; }
@@ -231,12 +233,13 @@
       .site-shell { width: auto; margin: 0; }
       .tabs { display: none; }
       .resume { width: auto; margin: 0; padding: 0; box-shadow: none; }
-      .masthead { padding-bottom: 0.18in; }
+      .masthead { gap: 0.18in; padding-bottom: 0.18in; }
       .photo-space { width: 1.05in; }
+      .masthead h1 { margin: 0; }
       h1 { font-size: 29pt; }
       .section-label { margin-bottom: 0.08in; font-size: 14pt; }
       .section { display: block; padding: 0.15in 0; break-inside: avoid; }
-      .section.summary-section { display: grid; grid-template-columns: minmax(0, 1fr) 1.05in; gap: 0.2in; }
+      .section.summary-section { display: block; }
       .job { break-inside: avoid; }
       .job-title { font-size: 11pt; }
       .job + .job { margin-top: 0.1in; }
@@ -254,14 +257,14 @@
     <section class="tab-panel" id="resume-panel" role="tabpanel" aria-labelledby="resume-tab" tabindex="0">
   <main class="resume">
     <header class="masthead">
+      <div class="photo-space">
+        <img src="vishwakarma_singh.jpg" alt="Vishwakarma Singh">
+      </div>
       <h1>Vishwakarma Singh</h1>
     </header>
     <section class="section summary-section">
       <div class="section-content">
         <p class="summary">AI/ML technical leader with 15+ years of experience translating frontier research and technology into production-scale systems across Trust &amp; Safety, Growth, Search, and Recommendation. Proven track record defining multi-year technical strategy, leading cross-functional and company-wide AI initiatives, and mentoring senior engineers and technical leaders. Deep expertise in multimodal AI across text, images, sequence, tabular, and graph data, with a strong track record driving company-level metrics and technical direction. <!-- Industry-recognized through 15+ research publications, patents, invited talks, media coverage, and industry-wide technical events. --></p>
-      </div>
-      <div class="photo-space">
-        <img src="vishwakarma_singh.jpg" alt="Vishwakarma Singh">
       </div>
     </section>
 
@@ -296,7 +299,7 @@
             <span class="date">2019-</span>
           </div>
           <ul class="job-list">
-            <li>AI technical leader influencing 100+ engineers, shaping technical strategy, and raising the organization’s AI/ML bar.</li>
+            <li>AI technical leader shaping technical strategy and roadmap; and raising the organization’s AI/ML bar.</li>
             <li>Led the multi-year transformation of Trust &amp; Safety from rule-based systems to an array of production-scale AI/ML systems spanning all product surfaces and modalities—including images, text, search, comments, and messaging—evolving from DNNs to LLMs and Generative AI. Defined and drove the multi-year technical strategy, roadmap, and execution for systems, models, and signals through cross-team leadership and cross-functional collaboration. Reduced spam and unsafe content across modalities by more than 90% at scale, establishing T&amp;S as a mature, sustainable capability. Drove broader industry impact through patents, research papers, technical blogs, media coverage, invited talks, and an industry-wide conference.</li>
             <li>Founded and led company-wide initiatives in generative AI; drove development of foundational and use-case-specific LLMs/VLMs and AI platforms, enabling production systems across dozens of use cases spanning search, growth, T&amp;S, and other organizations, with outsized impact on company-level metrics.</li>
             <li>Modernized Growth (Notifications, SEO, etc.) through AI/ML-first strategy; introduced Gen AI (LLMs/VLMs); led design, development, and operationalization of models (GenAI, LLMs, two-tower, etc.) for recommendation and ranking, resulting in significant top-line metric gains.</li>
