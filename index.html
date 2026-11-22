@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Vishwakarma Singh</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #22332e;
+      --muted: #586b62;
+      --green: #285a4b;
+      --green-soft: #edf2ec;
+      --coral: #aa5b46;
+      --line: #cbd8cf;
+      --paper: #f5f3e9;
+      --canvas: #dce8e1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: Inter, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.58;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--green); text-decoration-color: #90a99d; text-underline-offset: 3px; }
+
+    .site-shell {
+      width: min(100% - 40px, 1040px);
+      margin: 28px auto 40px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tab-button {
+      margin-bottom: -1px;
+      padding: 12px 15px 10px;
+      border: 0;
+      border-bottom: 3px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .tab-button:hover,
+    .tab-button[aria-selected="true"] { color: var(--green); }
+    .tab-button[aria-selected="true"] { border-bottom-color: var(--green); }
+    .tab-button:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+    .tab-panel[hidden] { display: none; }
+
+    .resume {
+      width: 100%;
+      margin: 0;
+      padding: 58px 70px 68px;
+      background: var(--paper);
+      box-shadow: 0 18px 60px rgb(32 45 42 / 10%);
+    }
+
+    .masthead {
+      padding-bottom: 28px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 1.08;
+    }
+
+    .section-label {
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .contact-line { margin: 3px 0 0; color: var(--muted); }
+    .contact-line em { color: var(--ink); font-style: normal; font-weight: 650; }
+    .contact-separator { padding: 0 9px; color: var(--coral); }
+
+    .photo-space {
+      width: 132px;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .photo-space img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
+    }
+
+    .section {
+      display: block;
+      padding: 25px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section.summary-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 132px;
+      align-items: start;
+      gap: 28px;
+    }
+
+    .section-content > :first-child { margin-top: 0; }
+    .section-content > :last-child { margin-bottom: 0; }
+    .summary { max-width: 720px; margin: 0; font-size: 16px; line-height: 1.7; }
+    .skills { margin: 0; color: #33443e; line-height: 1.8; }
+
+    .education-entry,
+    .job-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    .education-entry {
+      padding: 12px 16px;
+      border-left: 3px solid var(--green);
+      background: var(--green-soft);
+    }
+    .job {
+      padding: 12px 16px;
+      border-left: 3px solid var(--green);
+      background: var(--green-soft);
+    }
+    .education-entry + .education-entry { margin-top: 12px; }
+    .education-entry p { margin: 0; }
+    .date { flex: 0 0 auto; color: var(--green); font-size: 13px; font-weight: 700; }
+
+    .job + .job { margin-top: 12px; }
+    .job-heading { align-items: start; }
+    .job-title { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 16px; font-weight: 700; line-height: 1.4; }
+    .company { color: var(--green); }
+    .job-subtitle { margin: 2px 0 0; color: var(--muted); }
+    .job-description { margin: 14px 0 0; }
+    .job-list,
+    .plain-list {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      font-size: 0.94em;
+    }
+    .job-list li + li { margin-top: 9px; }
+    .job-list li::marker { color: var(--coral); }
+
+    .plain-list { list-style: disc; }
+    .plain-list li + li { margin-top: 5px; }
+    .plain-list li::marker { color: var(--coral); }
+
+    .compact .section-content { padding-top: 1px; }
+    .compact .plain-list { margin-top: 0; }
+
+    .article-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .article-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.94em;
+      line-height: 1.5;
+    }
+
+    .article-list a { font-weight: 650; }
+
+    @media (max-width: 700px) {
+      .site-shell { width: min(100% - 20px, 560px); margin: 10px auto; }
+      .resume { padding: 32px 24px 42px; }
+      .tabs { padding: 0 8px; }
+      .tab-button { padding-right: 12px; padding-left: 12px; }
+      .masthead { padding-bottom: 22px; }
+      h1 { font-size: 32px; }
+      .photo-space { width: 88px; }
+      .section { padding: 21px 0; }
+      .section.summary-section { grid-template-columns: minmax(0, 1fr) 88px; gap: 18px; }
+      .section-label { font-size: 19px; }
+      .summary { font-size: 15px; }
+      .job-heading { gap: 10px; }
+      .job-title { font-size: 15px; }
+      .date { font-size: 12px; }
+      .article-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 430px) {
+      body { font-size: 14px; }
+      .resume { padding-right: 18px; padding-left: 18px; }
+      h1 { font-size: 29px; }
+      .photo-space { width: 70px; }
+      .section.summary-section { grid-template-columns: minmax(0, 1fr) 70px; gap: 12px; }
+      .contact-separator { padding: 0 4px; }
+      .education-entry { display: block; }
+      .education-entry .date { margin-top: 2px; }
+      .job-heading { display: block; }
+      .job-heading .date { display: block; margin-top: 3px; }
+    }
+
+    @media print {
+      @page { size: letter; margin: 0.52in 0.58in; }
+      body { background: white; font-size: 10.5pt; line-height: 1.45; }
+      .site-shell { width: auto; margin: 0; }
+      .tabs { display: none; }
+      .resume { width: auto; margin: 0; padding: 0; box-shadow: none; }
+      .masthead { padding-bottom: 0.18in; }
+      .photo-space { width: 1.05in; }
+      h1 { font-size: 29pt; }
+      .section-label { margin-bottom: 0.08in; font-size: 14pt; }
+      .section { display: block; padding: 0.15in 0; break-inside: avoid; }
+      .section.summary-section { display: grid; grid-template-columns: minmax(0, 1fr) 1.05in; gap: 0.2in; }
+      .job { break-inside: avoid; }
+      .job-title { font-size: 11pt; }
+      .job + .job { margin-top: 0.1in; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <nav class="tabs" role="tablist" aria-label="Resume and articles">
+      <button class="tab-button" id="resume-tab" type="button" role="tab" aria-selected="true" aria-controls="resume-panel" tabindex="0">About</button>
+      <button class="tab-button" id="articles-tab" type="button" role="tab" aria-selected="false" aria-controls="articles-panel" tabindex="-1">Perspective</button>
+    </nav>
+
+    <section class="tab-panel" id="resume-panel" role="tabpanel" aria-labelledby="resume-tab" tabindex="0">
+  <main class="resume">
+    <header class="masthead">
+      <h1>Vishwakarma Singh</h1>
+    </header>
+    <section class="section summary-section">
+      <div class="section-content">
+        <p class="summary">AI/ML technical leader with 15+ years of experience translating frontier research and technology into production-scale systems across Trust &amp; Safety, Growth, Search, and Recommendation. Proven track record defining multi-year technical strategy, leading cross-functional and company-wide AI initiatives, and mentoring senior engineers and technical leaders. Deep expertise in multimodal AI across text, images, sequence, tabular, and graph data, with a strong track record driving company-level metrics and technical direction. <!-- Industry-recognized through 15+ research publications, patents, invited talks, media coverage, and industry-wide technical events. --></p>
+      </div>
+      <div class="photo-space">
+        <img src="vishwakarma_singh.jpg" alt="Vishwakarma Singh">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Skills</div>
+      <div class="section-content">
+        <p class="skills">Agentic AI, Generative AI, Large Language Models (LLMs, VLMs), Reinforcement Learning, RAG, PEFT, Deep Learning (DNN, CNN, GNN), Machine Learning, Web Scale Indexing and Search, Python, Pytorch, Big Data</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Education</div>
+      <div class="section-content">
+        <div class="education-entry">
+          <p>M.S. &amp; PhD., Department of Computer Science, UCSB, USA</p>
+        </div>
+        <div class="education-entry">
+          <p>B.Tech., Department of Computer Engineering, IIT, India</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Work Experience</div>
+      <div class="section-content">
+        <article class="job">
+          <div class="job-heading">
+            <div>
+              <h2 class="job-title">Principal AI/ML Engineer (Dir.), <span class="company">Pinterest</span></h2>
+              <p class="job-subtitle">Uber AI/ML Tech Lead for Trust&amp;Safety, Growth, and Generative AI</p>
+            </div>
+            <span class="date">2019-</span>
+          </div>
+          <ul class="job-list">
+            <li>AI technical leader influencing 100+ engineers, shaping technical strategy, and raising the organization’s AI/ML bar.</li>
+            <li>Led the multi-year transformation of Trust &amp; Safety from rule-based systems to an array of production-scale AI/ML systems spanning all product surfaces and modalities—including images, text, search, comments, and messaging—evolving from DNNs to LLMs and Generative AI. Defined and drove the multi-year technical strategy, roadmap, and execution for systems, models, and signals through cross-team leadership and cross-functional collaboration. Reduced spam and unsafe content across modalities by more than 90% at scale, establishing T&amp;S as a mature, sustainable capability. Drove broader industry impact through patents, research papers, technical blogs, media coverage, invited talks, and an industry-wide conference.</li>
+            <li>Founded and led company-wide initiatives in generative AI; drove development of foundational and use-case-specific LLMs/VLMs and AI platforms, enabling production systems across dozens of use cases spanning search, growth, T&amp;S, and other organizations, with outsized impact on company-level metrics.</li>
+            <li>Modernized Growth (Notifications, SEO, etc.) through AI/ML-first strategy; introduced Gen AI (LLMs/VLMs); led design, development, and operationalization of models (GenAI, LLMs, two-tower, etc.) for recommendation and ranking, resulting in significant top-line metric gains.</li>
+            <li>Led innovations resulting in multiple patents and peer-reviewed publications.</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job-heading">
+            <div>
+              <h2 class="job-title">Principal Machine Learning Scientist (ML Architect), <span class="company">Apple</span></h2>
+            </div>
+            <span class="date">2012-2019</span>
+          </div>
+          <p class="job-description">Lead for machine learning projects in Maps: modeling, categorization, and keyword tagging of reviews; classification, scene analysis, and ranking of images; outlier detection; large scale fuzzy matching of semi-structured and text data; footfall prediction</p>
+        </article>
+
+        <article class="job">
+          <div class="job-heading">
+            <div>
+              <h2 class="job-title">Principal Machine Learning Engineer, <span class="company">Oracle</span></h2>
+            </div>
+            <span class="date">2011-2012</span>
+          </div>
+          <p class="job-description">Led projects to model and predict workforce attrition with what-if analysis</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="section-label">Professional Services</div>
+      <div class="section-content">
+        <ul class="plain-list">
+          <li>Area chair and Session chair, KDD 2025 and KDD 2026</li>
+          <li>Invited panel speaker at AWS re-invent, 2025, on open-source LLMs</li>
+          <li>Invited speaker at KDD-MIS2, WSDM-Integrity, Re-Work and TMLS</li>
+          <li>Organized industry-wide Trust and Safety summit (500+ attendees)</li>
+          <li>Organized Pinterest’s external ML Day (600+ attendees), and Pinterest’s internal ML conference</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="section-label">Selected Publications</div>
+      <div class="section-content">
+        <ul class="plain-list">
+          <!-- <li>VLM-Based Continuous Training-Data Moderation for Multimodal Notification Recommendation, RecSys, 2026</li> -->
+          <li>PinSieve: Production Selective VLM Serving and a Governed Memory Flywheel for Enterprise Content-Quality Triage, KDD, 2026, (<a href="https://arxiv.org/pdf/2608.24040">pdf</a>)</li>
+          <li>Generative Engine Optimization: A VLM and Agent Framework for Pinterest Acquisition Growth, 2026, (<a href="https://arxiv.org/pdf/2602.02961">pdf</a>)</li>
+          <li>RecoMind: A Reinforcement Learning Framework for Optimizing In-Session User Satisfaction in Recommendation Systems, 2025, (<a href="https://arxiv.org/pdf/2508.00201">pdf</a>)</li>
+          <li>Modeling User Behavior With Interaction Networks for Spam Detection, ACM SIGIR, 2022, (<a href="https://arxiv.org/pdf/2207.10767">pdf</a>)</li>
+          <li>Nearest Keyword Set Search in Multi-dimensional Datasets, TKDE, 2015</li>
+          <li>Answering Top-k Representative Queries with Binary Constraints, SSDBM, 2015</li>
+          <li>Nearest Keyword Set Search in Multi-dimensional Datasets, ICDE, 2014</li>
+          <li>SIMP: Accurate and Efficient Near Neighbor Search in Very High Dimensional Spaces, EDBT, 2012</li>
+          <li>Efficient and Robust Detection of Duplicate Videos in a Large Database, CSVT, 2010</li>
+          <li>Querying Spatial Patterns, EDBT, 2010</li>
+          <li>Efficient Computation of Statistical Significance of Query Results in Databases, SSDBM, 2008</li>
+        </ul>
+      </div>
+    </section>
+
+        <section class="section compact">
+      <div class="section-label">Blogs</div>
+      <div class="section-content">
+        <ul class="plain-list">
+          <li><a href="https://medium.com/pinterest-engineering/how-pinterest-fights-spam-using-machine-learning-d0ee2589f00a">How Pinterest Fights Spam Using Machine Learning</a></li>
+          <li><a href="https://medium.com/pinterest-engineering/how-pinterest-fights-misinformation-hate-speech-and-self-harm-content-with-machine-learning-1806b73b40ef">How Pinterest fights misinformation, hate speech, and self-harm content with machine learning</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Contact</div>
+      <div class="section-content">
+        <p class="contact-line"><em>E-mail:</em> <a href="mailto:vsingh014@yahoo.com">vsingh014@gmail.com</a></p>
+      </div>
+    </section>
+  </main>
+    </section>
+
+    <section class="tab-panel" id="articles-panel" role="tabpanel" aria-labelledby="articles-tab" tabindex="0" hidden>
+      <main class="resume">
+        <header class="masthead">
+          <h1>Perspective</h1>
+        </header>
+        <section class="section compact">
+          
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+
+    function selectTab(tab, moveFocus = false) {
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute("aria-selected", String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+      });
+      if (moveFocus) tab.focus();
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => selectTab(tab));
+      tab.addEventListener("keydown", (event) => {
+        let nextIndex;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+        if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = tabs.length - 1;
+        if (nextIndex !== undefined) {
+          event.preventDefault();
+          selectTab(tabs[nextIndex], true);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
